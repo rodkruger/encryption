@@ -37,3 +37,16 @@ y_pred_fhe = model.predict(X_test, fhe="execute")
 print("In clear  :", y_pred_clear)
 print("In FHE    :", y_pred_fhe)
 print(f"Similarity: {int((y_pred_fhe == y_pred_clear).mean()*100)}%")
+
+# Descrevendo o FHE
+# Premissas
+#  1. Os dados estão SEMPRE criptografados;
+#
+# Pseudocódigo
+#  - O provedor retém uma versão criptografada da chave privada. Uma opção é usar algoritmos simétricos para criptografar a chave privada;
+#  - Sempre que o bootstrapping for executado, os dados são descriptografados com a chave privada criptografada. Deste modo, os dados não retornam a seu estado plano;
+#  - No segundo passo, os dados são novamente criptografados, usando a chave pública;
+#
+# Como simular o FHE?
+#
+#  Faça um pseudocódigo em C/C++ ou Python que simule o bootstrapping
