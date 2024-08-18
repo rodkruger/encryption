@@ -1,3 +1,4 @@
 wheel
 setuptools
+concrete
 concrete-ml
