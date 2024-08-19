@@ -32,7 +32,7 @@ y = data["Class label"]
 scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
-# Secont step: encrypt the data using TFHE
+# Second step: encrypt the data using TFHE
 client = ClientEngine(keys_path="my_keys")
 X_encrypted = client.encrypt_from_pandas(pd.DataFrame(X))
 y_encrypted = client.encrypt_from_pandas(pd.DataFrame(y))
