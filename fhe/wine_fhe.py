@@ -21,8 +21,6 @@ column_names = [
 
 wine_data = pd.read_csv(URL, header=None, names=column_names)
 
-X = wine_data.drop("Class label", axis=1)
-y = wine_data["Class label"]
 
 mapping = {1: 0, 2: 0, 3: 1}
 y = y.map(mapping)
@@ -39,8 +37,6 @@ model = SGDClassifier(
 X = X.to_numpy()
 y = y.to_numpy()
 
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
