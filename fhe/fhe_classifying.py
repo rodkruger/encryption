@@ -117,12 +117,3 @@ test_model(x_test, y_test, model, p_fhe_mode="disable")
 print("# Building models on encrypted data")
 model = train_model(x_train, y_train)
 test_model(x_test, y_test, model)
-
-# TODO
-#
-# 1. Two examples of regression
-#     A: not supported by concrete-ml yet (https://www.zama.ai/post/comparison-of-concrete-ml-regressors)
-#
-# 2. Think to adapt concrete to work as data stream
-#
-# 2. Implement something with CKKS
