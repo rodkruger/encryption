@@ -26,8 +26,7 @@ def train_model(x_train, y_train, p_fit_encrypted=True, p_fhe_mode="execute"):
         random_state=42,
         max_iter=50,
         fit_encrypted=p_fit_encrypted,
-        parameters_range=parameters_range,
-    )
+        parameters_range=parameters_range)
 
     model.fit(x_train, y_train, fhe=p_fhe_mode)
     model.compile(x_train)
