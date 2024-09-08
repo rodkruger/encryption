@@ -1,8 +1,10 @@
 from concrete.ml.sklearn import DecisionTreeClassifier
+from concrete.ml.sklearn import SGDClassifier
 from concrete.ml.deployment import FHEModelDev, FHEModelClient, FHEModelServer
 
-from sklearn.datasets import load_breast_cancer
+from sklearn.datasets import load_wine, load_breast_cancer
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 import numpy as np
 import os
@@ -17,12 +19,20 @@ if os.path.exists(fhe_directory):
     shutil.rmtree(fhe_directory)
 
 # Initialize the Decision Tree model
-model = DecisionTreeClassifier()
+parameters_range = (-1.0, 1.0)
+
+model = SGDClassifier(
+    random_state=42,
+    max_iter=50,
+    fit_encrypted=False,
+    parameters_range=parameters_range)
 
 # Generate some random data for training
-cancer_data = load_breast_cancer()
-X = cancer_data.data
-y = cancer_data.target
+data = load_wine()
+X = data.data
+y = data.target
+
+X = StandardScaler().fit_transform(X)
 
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
@@ -51,3 +61,8 @@ encrypted_result = server.run(encrypted_data, serialized_evaluation_keys)
 
 # Client decrypts the result
 result = client.deserialize_decrypt_dequantize(encrypted_result)
+print(result)
+
+# SGD
+# KNN
+# Implementar sobre dados criptografados
